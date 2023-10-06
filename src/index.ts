@@ -27,4 +27,4 @@ app.use('/', async (req, res) => {
     }
 })
 
-app.listen(5000, () => console.log('app started: 5000'))
+app.listen(5000, () => console.log('server started: 5000'))
