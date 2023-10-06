@@ -1,4 +1,4 @@
-import puppeteer, {executablePath} from 'puppeteer-core'
+import puppeteer from 'puppeteer'
 
 
 
@@ -6,7 +6,6 @@ export default async function getPage () {
     try {
         const browser = await puppeteer.launch({
             headless: 'new', 
-            executablePath: executablePath('chrome'),
             args: ['--no-sandbox',],
             ignoreHTTPSErrors: true,
         });
