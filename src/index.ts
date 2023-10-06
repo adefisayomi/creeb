@@ -5,26 +5,31 @@ const app = express()
 
 app.use('/', async (req, res) => {
 
-    const browser = await puppeteer.launch({headless: 'new'});
-    const page = await browser.newPage()
+    res.send({
+        data: 'dolapo',
+        email: 'claceey@gmail.com'
+    })
 
-    try {
-        // Navigate the page to a URL
-        await page.goto('https://example.com/');
+    // const browser = await puppeteer.launch({headless: 'new'});
+    // const page = await browser.newPage()
 
-        const title = await page.$$eval('p', (doc) => {
-            const arr: any = []
-            doc.forEach(data => arr.push(data.textContent))
-            return arr
-        })
-        res.send({data: title})
-    }
-    catch(err: any) {
-        console.log(err.message)
-    }
-    finally {
-        await browser.close();
-    }
+    // try {
+    //     // Navigate the page to a URL
+    //     await page.goto('https://example.com/');
+
+    //     const title = await page.$$eval('p', (doc) => {
+    //         const arr: any = []
+    //         doc.forEach(data => arr.push(data.textContent))
+    //         return arr
+    //     })
+    //     res.send({data: title})
+    // }
+    // catch(err: any) {
+    //     console.log(err.message)
+    // }
+    // finally {
+    //     await browser.close();
+    // }
 })
 
 app.listen(5000, () => console.log('server started: 5000'))
