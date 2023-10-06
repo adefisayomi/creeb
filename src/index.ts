@@ -5,6 +5,7 @@ import getPage from './controllers/geePage'
 // import cookieParser from 'cookie-parser'
 
 const app = express()
+const PORT = process.env.PORT || 5000;
 
 
 app.use('/', async (req, res) => {
@@ -13,4 +14,4 @@ app.use('/', async (req, res) => {
    res.send(data)
 })
 
-app.listen(5000, () => console.log('server started: 5000'))
+app.listen(PORT, () => console.log('server started: ' + PORT))

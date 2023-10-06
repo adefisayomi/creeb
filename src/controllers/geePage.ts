@@ -3,13 +3,21 @@ import puppeteer from 'puppeteer'
 
 
 export default async function getPage () {
+    const browser = await puppeteer.launch({
+        args: [
+          "--disable-setuid-sandbox",
+          "--no-sandbox",
+          "--single-process",
+          "--no-zygote",
+        ],
+        executablePath:
+          process.env.NODE_ENV === "production"
+            ? process.env.PUPPETEER_EXECUTABLE_PATH
+            : puppeteer.executablePath(),
+      });
+
     try {
-        const browser = await puppeteer.launch({
-            headless: 'new', 
-            args: ['--no-sandbox', '--no-zygote', '--signal-process', '--disable-setuid-sandbox'],
-            ignoreHTTPSErrors: true,
-            executablePath: process.env.NODE_ENV === 'production' ? process.env.PUPPETEER_EXECUTABLE_PATH : puppeteer.executablePath()
-        });
+        
         const page = await browser.newPage()
         await page.goto('https://example.com/');
 
@@ -20,7 +28,7 @@ export default async function getPage () {
         })
 
         await page.close()
-        await browser.close()
+        
         
         return ({
             success: true,
@@ -34,5 +42,8 @@ export default async function getPage () {
             message: err.message,
             data: null
         })
+    }
+    finally {
+        await browser.close()
     }
 }

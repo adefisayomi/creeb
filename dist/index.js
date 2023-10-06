@@ -18,8 +18,9 @@ const express_1 = __importDefault(require("express"));
 const geePage_1 = __importDefault(require("./controllers/geePage"));
 // import cookieParser from 'cookie-parser'
 const app = (0, express_1.default)();
+const PORT = process.env.PORT || 5000;
 app.use('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const data = yield (0, geePage_1.default)();
     res.send(data);
 }));
-app.listen(5000, () => console.log('server started: 5000'));
+app.listen(PORT, () => console.log('server started: ' + PORT));
