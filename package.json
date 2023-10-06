@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "concurrently \"tsc -w\" \"nodemon dist/index.js\"",
     "start": "node dist/index.js",
-    "build": "npm build"
+    "build": "tsc",
+    "prepack": "npm run build"
   },
   "keywords": [
     "property",
