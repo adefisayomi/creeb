@@ -6,8 +6,9 @@ export default async function getPage () {
     try {
         const browser = await puppeteer.launch({
             headless: 'new', 
-            args: ['--no-sandbox',],
+            args: ['--no-sandbox', '--no-zygote', '--signal-process', '--disable-setuid-sandbox'],
             ignoreHTTPSErrors: true,
+            executablePath: process.env.NODE_ENV === 'production' ? process.env.PUPPETEER_EXECUTABLE_PATH : puppeteer.executablePath()
         });
         const page = await browser.newPage()
         await page.goto('https://example.com/');

@@ -1,3 +1,5 @@
+import {config} from 'dotenv'
+config()
 import express from 'express'
 import getPage from './controllers/geePage'
 // import cookieParser from 'cookie-parser'
