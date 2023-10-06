@@ -15,8 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = require("dotenv");
 (0, dotenv_1.config)();
 const express_1 = __importDefault(require("express"));
-const geePage_1 = __importDefault(require("./controllers/geePage"));
-// import cookieParser from 'cookie-parser'
+const geePage_1 = __importDefault(require("./geePage"));
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 5000;
 app.use('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
