@@ -13,26 +13,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const puppeteer_1 = __importDefault(require("puppeteer"));
+const geePage_1 = __importDefault(require("./controllers/geePage"));
+// import cookieParser from 'cookie-parser'
 const app = (0, express_1.default)();
 app.use('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const browser = yield puppeteer_1.default.launch({ headless: 'new' });
-    const page = yield browser.newPage();
-    try {
-        // Navigate the page to a URL
-        yield page.goto('https://example.com/');
-        const title = yield page.$$eval('p', (doc) => {
-            const arr = [];
-            doc.forEach(data => arr.push(data.textContent));
-            return arr;
-        });
-        res.send({ data: title });
-    }
-    catch (err) {
-        console.log(err.message);
-    }
-    finally {
-        yield browser.close();
-    }
+    const data = yield (0, geePage_1.default)();
+    res.send(data);
 }));
-app.listen(5000, () => console.log('app started: 5000'));
+app.listen(5000, () => console.log('server started: 5000'));

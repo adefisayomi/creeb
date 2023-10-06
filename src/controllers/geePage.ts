@@ -1,10 +1,15 @@
-import puppeteer from 'puppeteer'
+import puppeteer, {executablePath} from 'puppeteer-core'
 
 
 
 export default async function getPage () {
     try {
-        const browser = await puppeteer.launch({headless: 'new'});
+        const browser = await puppeteer.launch({
+            headless: 'new', 
+            executablePath: executablePath('chrome'),
+            args: ['--no-sandbox',],
+            ignoreHTTPSErrors: true,
+        });
         const page = await browser.newPage()
         await page.goto('https://example.com/');
 
@@ -13,7 +18,7 @@ export default async function getPage () {
             doc.forEach(data => arr.push(data.textContent))
             return arr
         })
-        
+
         await page.close()
         await browser.close()
         

@@ -1,5 +1,4 @@
 import express from 'express'
-import puppeteer from 'puppeteer'
 import getPage from './controllers/geePage'
 // import cookieParser from 'cookie-parser'
 
